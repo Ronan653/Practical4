@@ -6,26 +6,33 @@ namespace SMS.web.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+   public IActionResult Index()
+   {
+       return View();
 
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
+   }
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+    public IActionResult About()
+   {
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+       //Construct viewmodel
+       var about = new AboutViewModel
+       {
+           Formed = new DateTime(2020,01,01),
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
+           Title = new String("Web Based Application Development COM741"),
+
+           Message = new String("Teaching Staff Aiden McCaughey, Senior Lecturer School of Computing Engineering & Intelligent Systems")
+
+       };
+
+       return View(about);
+
+   }
+
+   public IActionResult Privacy()
+   {
+       return View();
+
+   }
 }
